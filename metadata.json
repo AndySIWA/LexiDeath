@@ -1,0 +1,10 @@
+{
+  "name": "LexiDeath",
+  "description": "Jeu d'action dark fantasy d'apprentissage de l'anglais au rythme d'une horde de zombies, combinant frappe au clavier et reconnaissance vocale.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
