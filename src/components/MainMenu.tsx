@@ -10,6 +10,7 @@ interface MainMenuProps {
   onOpenGrimoire: () => void;
 }
 
+/** Presents the entry screen, input-mode choice, local records, and Grimoire access. */
 export const MainMenu: React.FC<MainMenuProps> = ({
   stats,
   selectedMode,

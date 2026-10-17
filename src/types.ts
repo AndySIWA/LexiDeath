@@ -1,3 +1,4 @@
+/** Shared domain contracts for vocabulary, combat state, game stats, and local progress. */
 export type MonsterType = 'standard' | 'fast' | 'boss';
 
 export type WordCategory = 'daily' | 'work' | 'travel' | 'dark_fantasy' | 'medical' | 'phrases';
@@ -13,6 +14,7 @@ export interface WordEntry {
   hint?: string;
 }
 
+/** Runtime position and combat state for one enemy in the arena. */
 export interface ActiveZombie {
   id: string;
   word: WordEntry;
@@ -48,6 +50,7 @@ export interface GameStats {
   correctAttempts: number;
 }
 
+/** Per-word review state used to prioritize vocabulary in later waves. */
 export interface MissedWordRecord {
   word: WordEntry;
   timesMissed: number;
@@ -63,6 +66,7 @@ export interface StoredStats {
   masteredWordsCount: number;
 }
 
+/** Persisted preference shape reserved for game settings. */
 export interface UserSettings {
   defaultMode: 'voice' | 'keyboard' | 'hybrid';
   sfxVolume: number;

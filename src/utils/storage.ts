@@ -1,5 +1,6 @@
 import { MissedWordRecord, WordEntry, StoredStats, UserSettings } from '../types';
 
+/** Browser-local persistence for settings, best scores, and vocabulary review history. */
 const STORAGE_KEYS = {
   MISSED_WORDS: 'lexideath_missed_words',
   STATS: 'lexideath_stats',
@@ -22,6 +23,7 @@ const DEFAULT_SETTINGS: UserSettings = {
 };
 
 export const StorageManager = {
+  /** Reads saved stats and merges them with defaults for newly added fields. */
   getStats(): StoredStats {
     try {
       const data = localStorage.getItem(STORAGE_KEYS.STATS);
@@ -31,6 +33,7 @@ export const StorageManager = {
     }
   },
 
+  /** Persists a partial update without discarding previously stored stat fields. */
   saveStats(stats: Partial<StoredStats>) {
     try {
       const current = this.getStats();
@@ -41,6 +44,7 @@ export const StorageManager = {
     }
   },
 
+  /** Reads user preferences, supplying defaults for missing or invalid storage. */
   getSettings(): UserSettings {
     try {
       const data = localStorage.getItem(STORAGE_KEYS.SETTINGS);
@@ -50,6 +54,7 @@ export const StorageManager = {
     }
   },
 
+  /** Persists only the supplied preference fields. */
   saveSettings(settings: Partial<UserSettings>) {
     try {
       const current = this.getSettings();
@@ -60,6 +65,7 @@ export const StorageManager = {
     }
   },
 
+  /** Returns the set of words currently tracked for spaced review. */
   getMissedWords(): MissedWordRecord[] {
     try {
       const data = localStorage.getItem(STORAGE_KEYS.MISSED_WORDS);
@@ -69,6 +75,7 @@ export const StorageManager = {
     }
   },
 
+  /** Adds a first miss or increments the existing word's review count. */
   recordMissedWord(word: WordEntry): void {
     try {
       const current = this.getMissedWords();
@@ -91,6 +98,7 @@ export const StorageManager = {
     }
   },
 
+  /** Reduces review debt after a correct answer and marks simple words mastered. */
   recordWordSuccess(wordId: string): void {
     try {
       const current = this.getMissedWords();

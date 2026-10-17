@@ -13,6 +13,7 @@ export interface PBRMaterialSet {
 }
 
 // 1. Wet Medieval Cobblestones with glossy rain puddles
+/** Creates diffuse, roughness, and height maps for a repeating wet cobblestone surface. */
 export function createCobblestonePBR(): PBRMaterialSet {
   const size = 512;
 
@@ -136,6 +137,7 @@ export function createCobblestonePBR(): PBRMaterialSet {
 }
 
 // 2. Castle Ashlar Masonry Stone for Fortress Walls and Towers
+/** Generates the stone surface maps shared by castle masonry props. */
 export function createCastleStonePBR(): PBRMaterialSet {
   const size = 512;
   const canvasD = document.createElement('canvas');
@@ -212,6 +214,7 @@ export function createCastleStonePBR(): PBRMaterialSet {
 }
 
 // 3. Weathered Dark Medieval Wood for carts, tavern beams, barrels
+/** Generates weathered wood maps for trunks, props, and structural details. */
 export function createMedievalWoodPBR(): PBRMaterialSet {
   const size = 256;
   const canvasD = document.createElement('canvas');
@@ -257,6 +260,7 @@ export function createMedievalWoodPBR(): PBRMaterialSet {
 }
 
 // 4. Nocturnal Forest Clearing Ground PBR (Moist dark earth, moss patches, pine needles)
+/** Creates a natural forest-floor texture set for the active arena environment. */
 export function createForestGroundPBR(): PBRMaterialSet {
   const size = 512;
   const canvasD = document.createElement('canvas');

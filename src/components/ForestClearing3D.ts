@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { createForestGroundPBR, createMedievalWoodPBR, createCastleStonePBR } from '../utils/pbrTextures';
 
+/** Mutable transform data used to animate each firefly in the render loop. */
 export interface FireflyData {
   mesh: THREE.Mesh;
   baseX: number;
@@ -24,6 +25,7 @@ export interface ForestClearingBuildResult {
   mistMesh: THREE.Mesh;
 }
 
+/** Builds the procedural forest floor, boundary props, lights, and ambient effects. */
 export function buildForestClearing3D(): ForestClearingBuildResult {
   const forestGroup = new THREE.Group();
   forestGroup.name = 'ForestClearing';

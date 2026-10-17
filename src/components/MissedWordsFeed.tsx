@@ -12,6 +12,7 @@ interface MissedWordsFeedProps {
   notice: MissedWordNotice;
 }
 
+/** Announces one recent missed translation at a time without stacking notifications. */
 export const MissedWordsFeed: React.FC<MissedWordsFeedProps> = ({ notice }) => (
   <section
     aria-label="Mots à revoir"

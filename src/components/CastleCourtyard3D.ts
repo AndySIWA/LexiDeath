@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { createCobblestonePBR, createCastleStonePBR, createMedievalWoodPBR } from '../utils/pbrTextures';
 
+/** Animated torch references returned with the alternate courtyard scene. */
 export interface TorchData {
   light: THREE.PointLight;
   flameMesh: THREE.Mesh;
@@ -15,6 +16,7 @@ export interface CastleCourtyardBuildResult {
   mistMesh: THREE.Mesh;
 }
 
+/** Builds the alternate castle courtyard scene; the active arena currently uses the forest. */
 export function buildCastleCourtyard3D(): CastleCourtyardBuildResult {
   const courtyardGroup = new THREE.Group();
   courtyardGroup.name = 'CastleCourtyard';

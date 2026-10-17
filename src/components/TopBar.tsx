@@ -13,6 +13,7 @@ interface TopBarProps {
   onTogglePause: () => void;
 }
 
+/** In-game HUD for wave progress, lives, input mode, audio, and pause controls. */
 export const TopBar: React.FC<TopBarProps> = ({
   stats,
   inputMode,

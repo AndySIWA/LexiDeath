@@ -24,6 +24,7 @@
   animation: fade-in 0.15s ease-out forwards;
 }
 
+/* Keep the single missed-word cue quick and legible rather than stacking notifications. */
 @keyframes missed-word-reveal {
   0% {
     opacity: 0;
@@ -39,6 +40,7 @@
   animation: missed-word-reveal 220ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+/* Honor reduced-motion preferences with a shorter, simpler entrance animation. */
 @media (prefers-reduced-motion: reduce) {
   .missed-word-enter {
     animation: fade-in 140ms ease-out both;

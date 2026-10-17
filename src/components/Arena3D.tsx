@@ -23,6 +23,7 @@ interface Arena3DProps {
   onZombieHitCenter?: (zombie: ActiveZombie) => void;
 }
 
+/** Projected HTML labels layered over Three.js enemies. */
 export interface ScreenTagPosition {
   id: string;
   x: number;
@@ -84,6 +85,7 @@ function getPanoramicFOV(width: number, height: number, isKeyboard?: boolean): n
   return 38;
 }
 
+/** Owns the Three.js scene, camera controls, enemy animation, and DOM target labels. */
 export const Arena3D: React.FC<Arena3DProps> = ({
   zombies,
   lockedZombieId,

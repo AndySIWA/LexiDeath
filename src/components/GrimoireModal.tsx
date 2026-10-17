@@ -19,6 +19,7 @@ const CATEGORIES: { id: WordCategory | 'all'; label: string }[] = [
   { id: 'phrases', label: 'Boss / Phrases' },
 ];
 
+/** Searchable vocabulary reference with category filters and review-state indicators. */
 export const GrimoireModal: React.FC<GrimoireModalProps> = ({
   missedRecords,
   onClose,

@@ -12,6 +12,7 @@ interface WaveClearedModalProps {
   onOpenGrimoire: () => void;
 }
 
+/** Celebrates a completed wave and offers the next wave or vocabulary review. */
 export const WaveClearedModal: React.FC<WaveClearedModalProps> = ({
   stats,
   waveWords,

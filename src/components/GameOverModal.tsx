@@ -11,6 +11,7 @@ interface GameOverModalProps {
   onGoHome: () => void;
 }
 
+/** Summarizes the run and turns surviving or missed words into a review lesson. */
 export const GameOverModal: React.FC<GameOverModalProps> = ({
   stats,
   missedWords,

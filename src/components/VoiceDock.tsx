@@ -14,6 +14,7 @@ interface VoiceDockProps {
   onSwitchToKeyboard: () => void;
 }
 
+/** Voice-input controls for continuous listening and push-to-talk gameplay. */
 export const VoiceDock: React.FC<VoiceDockProps> = ({
   isListening,
   transcript,

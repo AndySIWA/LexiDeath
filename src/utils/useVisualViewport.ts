@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 
+/** Viewport dimensions and mobile keyboard state consumed by the game layout. */
 export interface ViewportState {
   width: number;
   height: number;
@@ -7,6 +8,7 @@ export interface ViewportState {
   isMobile: boolean;
 }
 
+/** Tracks visual viewport changes that are not reflected reliably by window resize alone. */
 export function useVisualViewport(): ViewportState {
   const [state, setState] = useState<ViewportState>(() => {
     const w = typeof window !== 'undefined' ? window.innerWidth : 800;

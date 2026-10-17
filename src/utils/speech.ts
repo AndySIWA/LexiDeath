@@ -1,5 +1,6 @@
 // Speech Recognition STT Engine supporting continuous listening and Push-to-Talk
 
+/** Normalized speech transcript emitted by the browser recognition engine. */
 export interface SpeechRecognitionResultItem {
   transcript: string;
   isFinal: boolean;
@@ -12,6 +13,7 @@ interface IWindow extends Window {
   webkitSpeechRecognition?: any;
 }
 
+/** Wraps the browser's vendor-prefixed speech recognition API and listening modes. */
 export class SpeechEngine {
   private recognition: any = null;
   private isListening: boolean = false;
@@ -106,6 +108,7 @@ export class SpeechEngine {
     this.onStateChangeCallback = onStateChange;
   }
 
+  /** Starts recognition and restarts it after browser-generated session endings. */
   public startContinuous(): boolean {
     if (!this.recognition || !this.isSupported) return false;
     this.isPushToTalk = false;
@@ -122,6 +125,7 @@ export class SpeechEngine {
     }
   }
 
+  /** Starts one user-controlled listening session without automatic restarts. */
   public startPushToTalk(): boolean {
     if (!this.recognition || !this.isSupported) return false;
     this.isPushToTalk = true;
@@ -138,6 +142,7 @@ export class SpeechEngine {
     }
   }
 
+  /** Stops recognition and clears the continuous-listening intent. */
   public stop(): void {
     this.shouldKeepListening = false;
     if (this.recognition && this.isListening) {
@@ -164,4 +169,3 @@ export function playEnglishPronunciation(word: string): void {
     console.warn('TTS error:', e);
   }
 }
-

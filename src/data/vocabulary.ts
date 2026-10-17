@@ -1,5 +1,6 @@
 import { WordEntry } from '../types';
 
+/** Curated French-to-English vocabulary used by the arena and the Grimoire. */
 export const VOCABULARY_BANK: WordEntry[] = [
   // PRD Screenshot exact matches & daily essentials
   { id: 'sante', french: 'santé', english: 'health', category: 'daily', difficulty: 2, phonetic: '/hɛlθ/', hint: 'Bien-être physique' },
@@ -227,6 +228,7 @@ export const VOCABULARY_BANK: WordEntry[] = [
   { id: 'boss_fearless', french: 'sans aucune peur', english: 'without fear', acceptedVariants: ['without fear', 'fearless'], category: 'phrases', difficulty: 3, phonetic: '/wɪˈðaʊt fɪər/' },
 ];
 
+/** Selects a unique wave set, prioritizing review words while preserving difficulty quotas. */
 export function getWordsForWave(wave: number, count: number, missedWords: WordEntry[] = []): { standard: WordEntry[], fast: WordEntry[], boss: WordEntry[] } {
   // Spaced repetition: Prioritize missed words!
   const pool = [...VOCABULARY_BANK];
@@ -325,6 +327,7 @@ export function getWordsForWave(wave: number, count: number, missedWords: WordEn
   };
 }
 
+/** Normalizes spoken and typed answers before exact vocabulary comparisons. */
 export function cleanAnswerText(input: string): string {
   return input
     .toLowerCase()
@@ -334,6 +337,7 @@ export function cleanAnswerText(input: string): string {
     .replace(/[^a-z0-9 ]/g, ''); // keep alphanumeric and spaces
 }
 
+/** Accepts only the canonical translation or an explicitly listed variant. */
 export function matchesWord(input: string, word: WordEntry): boolean {
   const cleanInput = cleanAnswerText(input);
   if (!cleanInput) return false;

@@ -11,6 +11,7 @@ interface KeyboardDockProps {
   onFocusChange: (focused: boolean) => void;
 }
 
+/** Keyboard spell-entry panel with automatic target feedback and pronunciation controls. */
 export const KeyboardDock: React.FC<KeyboardDockProps> = ({
   inputValue,
   onChangeInput,

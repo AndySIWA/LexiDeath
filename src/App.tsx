@@ -39,6 +39,7 @@ interface MissedWordNotice {
   createdAt: number;
 }
 
+/** Coordinates screens, game rules, browser input, and persisted learning progress. */
 export default function App() {
   // Screen & Navigation
   const viewport = useVisualViewport();
@@ -146,7 +147,7 @@ export default function App() {
     }
   }, [screen, isPaused, inputMode, isContinuousVoice]);
 
-  // Surface newly breached words without putting side effects inside the game-loop state updater.
+  // Detect breaches from committed state so StrictMode cannot duplicate learning side effects.
   useEffect(() => {
     const attackingIds = new Set(
       activeZombies.filter(zombie => zombie.state === 'attacking').map(zombie => zombie.id)
@@ -178,7 +179,7 @@ export default function App() {
     return () => window.clearTimeout(timeout);
   }, [missedWordNotice]);
 
-  // Start / Init Wave
+  // Build a fresh queue for each wave and reset only the state that belongs to that wave.
   const startWave = useCallback((waveNum: number) => {
     // Wave zombies count: calibrated strictly between 15 and 25 words per wave
     // Wave 1: 15, Wave 2: 18, Wave 3: 21, Wave 4: 24, Wave 5+: 25
@@ -241,7 +242,7 @@ export default function App() {
     startWave(1);
   };
 
-  // Zombie Spawning Interval
+  // Spawn on a timer, consuming the queue outside the React state updater.
   useEffect(() => {
     if (screen !== 'playing' || isPaused) return;
 
@@ -293,7 +294,7 @@ export default function App() {
     return () => clearInterval(spawnTimer);
   }, [screen, isPaused, stats.wave]);
 
-  // Main 60FPS Game Loop: Move Zombies toward Mage, Check Damage & Wave Completion
+  // Advance movement and combat on animation frames; cap dt to avoid large jumps after stalls.
   useEffect(() => {
     if (screen !== 'playing' || isPaused) return;
 
@@ -476,7 +477,7 @@ export default function App() {
     return () => cancelAnimationFrame(frameId);
   }, [screen, isPaused, playSound, stats.score, stats.wave, stats.zombiesKilled, storedStats]);
 
-  // Eliminate or Hit a Zombie (Positive Resolution)
+  // Apply a successful answer, including boss damage, score, and spaced-repetition success.
   const eliminateZombie = useCallback((targetZombie: ActiveZombie) => {
     // Trigger Lightning bolt and sound impact
     setLightningTargetId(targetZombie.id);

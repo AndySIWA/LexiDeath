@@ -16,6 +16,7 @@ function getAudioContext(): AudioContext | null {
   return audioCtx;
 }
 
+/** Procedural sound effects shared by combat and interface feedback. */
 export const SoundEngine = {
   // Electric Lightning Zap from Wand to Zombie
   playLightningZap: (volume = 0.4) => {
@@ -261,6 +262,7 @@ export const SoundEngine = {
 };
 
 // PRD Requirement: "Feedback audio immédiat: Prononciation native de chaque mot manqué pour stimuler la mémoire auditive"
+/** Speaks one English vocabulary item with the best available browser voice. */
 export function speakEnglishWord(word: string, onEnd?: () => void): void {
   if (typeof window === 'undefined' || !('speechSynthesis' in window)) {
     if (onEnd) onEnd();
