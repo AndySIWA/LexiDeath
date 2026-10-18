@@ -5,6 +5,8 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
+    // GitHub Pages hosts this project beneath /LexiDeath/; keep local URLs at /.
+    base: process.env.GITHUB_ACTIONS === 'true' ? '/LexiDeath/' : '/',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {

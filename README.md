@@ -104,4 +104,8 @@ Le jeu n'effectue actuellement aucun appel à l'API Gemini et ne nécessite pas 
 
 ## Hébergement
 
-`npm run build` produit un site statique dans `dist/`, hébergeable sur un service compatible avec les applications Vite. Le dépôt GitHub sert au versionnement du code ; la publication des sources sur GitHub ne configure pas à elle seule un hébergement et aucun déploiement GitHub Pages n'est activé par ce projet.
+Le workflow [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml) construit et déploie automatiquement l'application sur GitHub Pages à chaque push sur `main`. Il exécute le contrôle TypeScript, construit `dist/`, puis publie l'artefact Pages. Les lancements manuels sont également disponibles dans l'onglet **Actions**.
+
+Pour activer le site la première fois, ouvrez **Settings → Pages** dans le dépôt et sélectionnez **GitHub Actions** comme source de publication. Le site est ensuite disponible à l'adresse [https://andysiwa.github.io/LexiDeath/](https://andysiwa.github.io/LexiDeath/). La configuration Vite utilise le préfixe `/LexiDeath/` uniquement dans le workflow de publication, pour que le développement local continue à servir depuis `/`.
+
+`npm run build` produit également un site statique autonome dans `dist/`, hébergeable sur d'autres services compatibles avec Vite.
